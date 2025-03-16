@@ -3,17 +3,14 @@ import { AutomatoComponent } from './pages/automato/shell/automato/automato.comp
 import { HomeComponent } from './pages/home/shell/home/home.component';
 
 export const routes: Routes = [
+
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'automato',
+    path: 'bank',
     component: AutomatoComponent
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'bank',
     pathMatch: 'full'
   },
   {

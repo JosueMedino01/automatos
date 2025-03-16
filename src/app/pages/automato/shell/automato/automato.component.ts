@@ -34,7 +34,7 @@ export class AutomatoComponent {
   insertCard: boolean = false;
   valueOperation!: number;
   typeOperation!: 'SAQUE' | 'DEPOSITO';
-  isDoned: boolean = false;
+  isDoned: boolean = true;
 
   onInsertCard() {
     this.insertCard = true;
