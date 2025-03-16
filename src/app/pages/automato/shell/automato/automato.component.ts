@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StateComponent } from '../../components/state/state.component';
 import { IState } from '../../interfaces/IState';
@@ -21,7 +21,8 @@ import { IState } from '../../interfaces/IState';
     MatRadioModule,
     NgFor,
     FormsModule,
-    StateComponent
+    StateComponent,
+    NgIf
   ],
   templateUrl: './automato.component.html',
   styleUrl: './automato.component.scss'

@@ -1,7 +1,3 @@
-<!-- <header class="w-100 d-flex justify-content-center align-items-center bg-light p-2">
-  <h1 class="fs-2 text-primary">Simulador de Caixa Eletrônico | Autômato Finito </h1>
-  <p></p>
-</header> -->
 <main class="h-100 d-flex flex-column justify-content-center align-items-center">
   <section class="text-center mb-2">
     <h1 class="fs-2 text-dark">Simulador de Caixa Eletrônico | Autômato Finito </h1>
@@ -11,10 +7,20 @@
   </section>
 
   @if (!isDoned) {
-    <section class="w-75 h-25 border mb-4 d-flex justify-content-center align-items-center  ">
-      @for (state of states; track $index) {
-        <app-state [state]="state"></app-state>
-      }
+    <section class="w-75 h-25 border mb-4 ">
+      <div class="d-flex justify-content-center align-items-center  ">
+        @for (state of states; track $index) {
+          <app-state [state]="state"></app-state>
+        }
+      </div>
+
+      <div class="d-flex flex-column justify-content-center align-items-start border mx-4 my-4 p-2">
+        <b class="d-block">Legenda</b>
+        @for (state of states; track $index) {
+          <span *ngIf="state.arrow" class="d-block">E{{$index}}: {{ state.arrow}}</span>
+        }
+
+      </div>
     </section>
     <section class="w-75 h-auto d-flex align-items-start border">
       <mat-stepper orientation="vertical" #stepper class="w-50">
