@@ -1,0 +1,92 @@
+<!-- <header class="w-100 d-flex justify-content-center align-items-center bg-light p-2">
+  <h1 class="fs-2 text-primary">Simulador de Caixa Eletrônico | Autômato Finito </h1>
+  <p></p>
+</header> -->
+<main class="h-100 d-flex flex-column justify-content-center align-items-center">
+  <section class="text-center mb-2">
+    <h1 class="fs-2 text-dark">Simulador de Caixa Eletrônico | Autômato Finito </h1>
+    <p>
+      O simulador de Caixa Eletrônico utiliza um Autômato Finito para representar os estados e transições do processo de saque.
+    </p>
+  </section>
+
+  @if (!isDoned) {
+    <section class="w-75 h-25 border mb-4 d-flex justify-content-center align-items-center  ">
+      @for (state of states; track $index) {
+        <app-state [state]="state"></app-state>
+      }
+    </section>
+    <section class="w-75 h-auto d-flex align-items-start border">
+      <mat-stepper orientation="vertical" #stepper class="w-50">
+        <mat-step>
+          <ng-template matStepLabel>Inserir cartão</ng-template>
+          <ng-template matStepContent >
+            <div class="d-flex justify-content-start align-items-center">
+              <img src="assets/card.gif" alt="">
+              <button mat-button  (click)="onInsertCard()" class="mx-4">Inserir cartão</button>
+            </div>
+          </ng-template>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Validação de senha</ng-template>
+          <ng-template matStepContent>
+
+            <div class="my-4">
+              <div  class="d-flex flex-column justify-content-start align-items-start">
+                <mat-form-field appearance="outline">
+                  <mat-label>Senha do cartão</mat-label>
+                  <input type="text" matInput placeholder="Nome" #password>
+                </mat-form-field>
+              </div>
+              <div>
+                <button mat-button (click)="onValidatePassword(password.value)">Validar senha</button>
+              </div>
+            </div>
+          </ng-template>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Selecionar operação</ng-template>
+          <div class="d-flex flex-column my-4">
+            <mat-radio-group class="mb-4"  [(ngModel)]="typeOperation" required>
+              <mat-radio-button value="SAQUE" class="me-4">Saque</mat-radio-button>
+              <mat-radio-button value="DEPOSITO">Depósito</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field appearance="outline">
+              <mat-label>Saldo</mat-label>
+              <input type="text" matInput disabled [value]="data.balance">
+            </mat-form-field>
+            @if (!!typeOperation) {
+              <mat-form-field appearance="outline">
+                <mat-label>
+                  {{ (typeOperation === 'SAQUE') ? 'Valor do saque' : 'Valor do depósito' }}
+                </mat-label>
+                <input
+                  [(ngModel)]="valueOperation"
+                  type="number" matInput
+                  [placeholder]="(typeOperation === 'SAQUE') ? 'Quanto você deseja sacar?' : 'Quanto você deseja depositar?'">
+              </mat-form-field>
+            }
+          </div>
+          <div>
+            <button mat-button (click)="onOperation(typeOperation, valueOperation)">Executar operação</button>
+            <button mat-button (click)="isDoned = true">Finalizar sessão</button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+
+      <div class="d-flex flex-column p-4">
+        @for (action of actions; track $index) {
+          <span class="mb-1 font-monospace">{{$index + 1}} - {{action}}</span>
+        }
+      </div>
+    </section>
+  } @else {
+    <section class="d-flex flex-column justify-content-center align-items-center">
+      <img class="w-50" src="assets/done.svg" alt="Operação finalizada">
+      <b class="d-block my-3">Operação concluida!</b>
+      <button mat-flat-button color="primary" (click)="onReset()">Iniciar nova sessão</button>
+    </section>
+  }
+
+
+</main>

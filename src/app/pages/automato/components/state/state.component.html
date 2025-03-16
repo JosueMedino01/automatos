@@ -1,0 +1,24 @@
+@if (!!state) {
+  <div class="d-flex justify-content-center align-items-center">
+    @if (!!state.arrow) {
+      <div class="d-flex flex-column mx-3 mt-3">
+         <div class="w-100">
+           <img *ngIf="state.status === 'ACTIVE'" src="assets/arrow-active.png">
+           <img *ngIf="state.status === 'INACTIVE'" src="assets/arrow-inactive.png">
+           <img *ngIf="state.status === 'ERROR'" src="assets/arrow-error.png">
+         </div>
+         <span>
+           {{ state.arrow }}
+         </span>
+      </div>
+     }
+     <div
+
+       class="rounded-circle d-flex justify-content-center align-items-center"
+       style="border:  1px solid; width: 50px; height: 50px;"
+     >
+       q{{ state.id }}
+     </div>
+  </div>
+
+}
